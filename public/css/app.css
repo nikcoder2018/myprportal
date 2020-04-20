@@ -1,0 +1,15 @@
+.navbar-semi-dark {
+  background-image: linear-gradient(to right, #0F4C81 0%, #1464aa 100%) !important;
+  background-repeat: repeat-x;
+  background: #0F4C81;
+  color: #fff;
+}
+
+.navbar-semi-dark .navbar-header {
+  background: transparent !important;
+}
+
+.navbar-semi-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+
