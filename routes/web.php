@@ -14,3 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'DashboardController@index')->name('dashboard');
+Route::get('/tenants', 'UsersController@tenants')->name('users.tenant');
+Route::get('/landlords', 'UsersController@landlords')->name('users.landlord');
+Route::get('/properties', 'PropertiesController@index')->name('properties.index');
+Route::get('/invoices', 'InvoicesController@index')->name('invoices.index');
+Route::get('/settings', 'SettingsController@index')->name('settings.index');
+
+Auth::routes();
+
+

@@ -28,40 +28,40 @@
                                 </span>
                                 <div class="stats-amount mr-3">
                                     <h3 class="heading-text text-bold-600">10</h3>
-                                    <p class="sub-heading">Tenants</p>
+                                    <p class="sub-heading">Landlords</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-xl-3 col-sm-6 col-12">
                             <div class="d-flex align-items-start mb-sm-1 mb-xl-0 border-right-blue-grey border-right-lighten-5">
                                 <span class="card-icon danger d-flex justify-content-center mr-3">
-                                    <i class="icon p-1 icon-user-follow customize-icon font-large-2 p-1"></i>
+                                    <i class="icon p-1 icon-home customize-icon font-large-2 p-1"></i>
                                 </span>
                                 <div class="stats-amount mr-3">
                                     <h3 class="heading-text text-bold-600">3</h3>
-                                    <p class="sub-heading">Landlords</p>
+                                    <p class="sub-heading">Properties</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-xl-3 col-sm-6 col-12">
                             <div class="d-flex align-items-start border-right-blue-grey border-right-lighten-5">
                                 <span class="card-icon success d-flex justify-content-center mr-3">
-                                    <i class="icon p-1 icon-home customize-icon font-large-2 p-1"></i>
+                                    <i class="icon p-1 icon-arow-up customize-icon font-large-2 p-1"></i>
                                 </span>
                                 <div class="stats-amount mr-3">
                                     <h3 class="heading-text text-bold-600">20</h3>
-                                    <p class="sub-heading">Properties</p>
+                                    <p class="sub-heading">Upcoming Inpections</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-xl-3 col-sm-6 col-12">
                             <div class="d-flex align-items-start">
                                 <span class="card-icon warning d-flex justify-content-center mr-3">
-                                    <i class="icon p-1 icon-star customize-icon font-large-2 p-1"></i>
+                                    <i class="icon p-1 icon-arow-down customize-icon font-large-2 p-1"></i>
                                 </span>
                                 <div class="stats-amount mr-3">
                                     <h3 class="heading-text text-bold-600">13</h3>
-                                    <p class="sub-heading">Units</p>
+                                    <p class="sub-heading">Pending Repairs</p>
                                 </div>
                             </div>
                         </div>
