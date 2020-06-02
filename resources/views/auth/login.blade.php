@@ -7,16 +7,16 @@
             <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
                 <div class="card-header border-0">
                     <div class="card-title text-center">
-                        <img src="{{ asset('images/logo/stack-logo-dark.png') }}" alt="branding logo">
+                        <h2 class="title">SevenBlue</h2>
                     </div>
                 </div>
                 <div class="card-content">
                     <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-1"><span>{{ __('Account Details') }}</span></p>
                     <div class="card-body">
-                        <form class="form-horizontal" action="{{ route('login') }}" novalidate>
+                        <form class="form-horizontal" action="{{ route('login') }}" method="POST">
                             @csrf
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" id="user-email" placeholder="Your Email Address" value="{{ old('email') }}" required>
+                                <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="user-email" placeholder="Your Email Address" value="{{ old('email') }}" required>
                                 <div class="form-control-position">
                                     <i class="feather icon-user"></i>
                                 </div>
@@ -28,7 +28,7 @@
                                 @enderror
                             </fieldset>
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="password" class="form-control @error('password') is-invalid @enderror id="user-password" placeholder="Enter Password" required>
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="user-password" placeholder="Enter Password" required>
                                 <div class="form-control-position">
                                     <i class="fa fa-key"></i>
                                 </div>

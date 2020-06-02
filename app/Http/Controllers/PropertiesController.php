@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Property;
 
 class PropertiesController extends Controller
 {
@@ -13,7 +14,23 @@ class PropertiesController extends Controller
      */
     public function index()
     {
-        //
+        $data['page'] = array(
+            'breadcrumbs' => [
+                'dashboard' => [
+                    'active' => false,
+                    'url' => route('dashboard')
+                ],
+                'properties' => [
+                    'active' => true,
+                    'url' => route('properties.index')
+                ]
+            ],
+            'title' => 'Properties'
+        );
+
+        $data['properties'] = Property::all();
+        
+        return view('contents.properties', $data);
     }
 
     /**
@@ -24,6 +41,7 @@ class PropertiesController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -34,7 +52,30 @@ class PropertiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'type' => 'required',
+            'rent' => 'required'
+        ]);
+
+        $property = new Property;
+        $property->name = $request->name;
+        $property->address = $request->address;
+        $property->type = $request->type;
+        $property->rent = $request->rent;
+        $property->save();
+
+        if($property){
+            return response()->json(
+                array(
+                    'request_status' => 'ok',
+                    'request_details' => array(
+                        'msg' => 'New property successfully added'
+                    )
+                )
+            );
+        }
     }
 
     /**
@@ -57,6 +98,16 @@ class PropertiesController extends Controller
     public function edit($id)
     {
         //
+        $property = Property::find($id)->first();
+
+        if($property){
+            return response()->json(
+                array(
+                    'request_status' => 'ok',
+                    'request_details' => $property
+                )
+            );
+        }
     }
 
     /**
@@ -68,7 +119,23 @@ class PropertiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $property = Property::find($id);
+        $property->name = $request->name;
+        $property->address = $request->address;
+        $property->type = $request->type;
+        $property->rent = $request->rent;
+        $property->save();
+
+        if($property){
+            return response()->json(
+                array(
+                    'request_status' => 'ok',
+                    'request_details' => array(
+                        'msg' => 'Propery successfully updated'
+                    )
+                )
+            );
+        }
     }
 
     /**
@@ -79,6 +146,18 @@ class PropertiesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $property = Property::find($id);
+        $property->delete();
+
+        if($property){
+            return response()->json(
+                array(
+                    'request_status' => 'ok',
+                    'request_details' => array(
+                        'msg' => 'Property successfully deleted'
+                    )
+                )
+            );
+        }
     }
 }

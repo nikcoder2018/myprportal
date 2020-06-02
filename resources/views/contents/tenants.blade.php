@@ -26,14 +26,14 @@
 @endsection
 
 @section('content')
-<section class="row all-contacts">
+<section class="row all-tenants">
     <div class="col-12">
         <div class="card">
             <div class="card-head">
                 <div class="card-header">
                     <h4 class="card-title">All Tenants</h4>
                     <div class="heading-elements mt-0">
-                        <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#AddContactModal"><i class="d-md-none d-block feather icon-user-plus white"></i>
+                        <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#addTenantModal"><i class="d-md-none d-block feather icon-user-plus white"></i>
                             <span class="d-md-block d-none"><i class="feather icon-user-plus"></i> Add Tenant</span>
                         </button>
                     </div>
@@ -57,45 +57,49 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><input type="checkbox" class="input-chk check"></td>
-                                    <td>
-                                        <div class="media">
-                                            <div class="media-left pr-1">
-                                                <span class="avatar avatar-sm avatar-online rounded-circle">
-                                                    <img src="{{asset('images/portrait/small/avatar-s-2.png')}}" alt="avatar">
+                                @if(count($tenants) > 0)
+                                    @foreach($tenants as $tenant)
+                                    <tr>
+                                        <td><input type="checkbox" class="input-chk check"></td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-left pr-1">
+                                                    <span class="avatar avatar-sm avatar-online rounded-circle">
+                                                        <img src="{{asset('images/portrait/small/avatar-s-2.png')}}" alt="avatar">
+                                                    </span>
+                                                </div>
+                                                <div class="media-body media-middle">
+                                                    <a class="media-heading name">{{$tenant->fname}} {{$tenant->lname}}</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="email" href="mailto:{{$tenant->email}}">{{$tenant->email}}</a>
+                                        </td>
+                                        <td class="phone">{{$tenant->mobile}}</td>
+                                        <td>Yes</td>
+                                        <td class="text-center">
+                                            <span class="badge badge-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="modal" data-target="#EditContactModal" class="primary edit mr-1"><i class="fa fa-pencil"></i></a>
+                                            <a class="danger delete mr-1"><i class="fa fa-trash-o"></i></a>
+                                            <span class="dropdown">
+                                                <a id="btnSearchDrop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="dropdown-toggle dropdown-menu-right"><i class="fa fa-ellipsis-v"></i></a>
+                                                <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
+                                                    <a data-toggle="modal" data-target="#EditContactModal" class="dropdown-item edit"><i class="feather icon-edit-2"></i>
+                                                        Edit</a>
+                                                    <a href="#" class="dropdown-item delete"><i class="feather icon-trash-2"></i> Delete</a>
+                                                    <a href="#" class="dropdown-item"><i class="feather icon-plus-circle primary"></i> Projects</a>
+                                                    <a href="#" class="dropdown-item"><i class="feather icon-plus-circle info"></i> Team</a>
+                                                    <a href="#" class="dropdown-item"><i class="feather icon-plus-circle warning"></i> Clients</a>
+                                                    <a href="#" class="dropdown-item"><i class="feather icon-plus-circle success"></i> Friends</a>
                                                 </span>
-                                            </div>
-                                            <div class="media-body media-middle">
-                                                <a class="media-heading name">Alice Collins</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <a class="email" href="mailto:email@example.com">alice@example.com</a>
-                                    </td>
-                                    <td class="phone">+658-254-256</td>
-                                    <td>Yes</td>
-                                    <td class="text-center">
-                                        <span class="badge badge-success">Active</span>
-                                    </td>
-                                    <td>
-                                        <a data-toggle="modal" data-target="#EditContactModal" class="primary edit mr-1"><i class="fa fa-pencil"></i></a>
-                                        <a class="danger delete mr-1"><i class="fa fa-trash-o"></i></a>
-                                        <span class="dropdown">
-                                            <a id="btnSearchDrop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="dropdown-toggle dropdown-menu-right"><i class="fa fa-ellipsis-v"></i></a>
-                                            <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
-                                                <a data-toggle="modal" data-target="#EditContactModal" class="dropdown-item edit"><i class="feather icon-edit-2"></i>
-                                                    Edit</a>
-                                                <a href="#" class="dropdown-item delete"><i class="feather icon-trash-2"></i> Delete</a>
-                                                <a href="#" class="dropdown-item"><i class="feather icon-plus-circle primary"></i> Projects</a>
-                                                <a href="#" class="dropdown-item"><i class="feather icon-plus-circle info"></i> Team</a>
-                                                <a href="#" class="dropdown-item"><i class="feather icon-plus-circle warning"></i> Clients</a>
-                                                <a href="#" class="dropdown-item"><i class="feather icon-plus-circle success"></i> Friends</a>
                                             </span>
-                                        </span>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -104,11 +108,13 @@
         </div>
     </div>
 
-    <div class="modal fade" id="AddContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal fade" id="addTenantModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <section class="contact-form">
-                    <form id="form-add-contact" class="contact-input">
+                <section class="tenant-form">
+                    <form id="form-add-tenant" class="tenant-input" actio="{{route('users.store')}}">
+                        @csrf
+                        <input type="hidden" name="role" value="tenant">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel1">Add New Tenant</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -117,24 +123,40 @@
                         </div>
                         <div class="modal-body">
                             <fieldset class="form-group col-12">
-                                <input type="text" name="fname" class="form-control" placeholder="First Name">
+                                <i class="float-right"><small>Required *</small></i>
+                                <input type="text" name="fname" class="form-control" placeholder="First Name" required>
                             </fieldset>
                             <fieldset class="form-group col-12">
-                                <input type="text" name="lname" class="form-control" placeholder="Last Name">
+                                <i class="float-right"><small>Required *</small></i>
+                                <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
                             </fieldset>
                             <fieldset class="form-group col-12">
-                                <input type="text" name="address" class="form-control" placeholder="Complete Number">
+                                <i class="float-right"><small>Required *</small></i>
+                                <input type="text" name="address" class="form-control" placeholder="Complete Address" required>
                             </fieldset>
                             <fieldset class="form-group col-12">
-                                <input type="text" name="mobile" class="form-control" placeholder="Phone Number">
+                                <i class="float-right"><small>Required *</small></i>
+                                <input type="text" name="mobile" class="form-control" placeholder="Phone Number" required>
                             </fieldset>
                             <fieldset class="form-group col-12">
-                                <input type="email" name="email" class="form-control" placeholder="Email">
+                                <i class="float-right"><small>Required *</small></i>
+                                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                            </fieldset>
+                            <fieldset class="form-group col-12">
+                                <i class="float-right"><small>Required *</small></i>
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                            </fieldset>
+                            <fieldset class="form-group col-12">
+                                <i class="float-right"><small>Required *</small></i>
+                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
                             </fieldset>
                         </div>
                         <div class="modal-footer">
                             <fieldset class="form-group position-relative has-icon-left mb-0">
-                                <button type="button" id="add-contact-item" class="btn btn-info add-contact-item" data-dismiss="modal"><i class="fa fa-paper-plane-o d-block d-lg-none"></i> <span class="d-none d-lg-block">Add New</span></button>
+                                <button type="submit" class="btn btn-info add-contact-item" data-dismiss="modal">
+                                    <i class="fa fa-paper-plane-o d-block d-lg-none"></i> 
+                                    <span class="d-none d-lg-block">Add New</span>
+                                </button>
                             </fieldset>
                         </div>
                     </form>
@@ -159,4 +181,8 @@
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('js/scripts/pages/app-contacts.js') }}"></script>
     <!-- END: Page JS-->
+
+    <script>
+
+    </script>
 @endsection
